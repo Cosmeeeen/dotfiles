@@ -1,0 +1,47 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+
+  // Minimal, dependency-free server fetch: ASCII logo, plain-text keys,
+  // ASCII meters — no Nerd Font needed. Keys are pre-padded (no key.width) so it
+  // renders identically on any terminal, even when piped. At-a-glance monitoring.
+
+  "logo": {
+    "type": "file",
+    "source": "~/.config/fastfetch/cosmin.txt",
+    "color": { "1": "#ebdbb2", "2": "#fabd2f", "3": "#fe8019" },
+    "padding": { "top": 1, "left": 2, "right": 3 }
+  },
+
+  "display": {
+    "separator": "  ",
+    "color": { "keys": "#fabd2f", "separator": "#665c54", "output": "#ebdbb2" },
+    "percent": { "type": ["num", "bar"], "green": "38;2;184;187;38", "yellow": "38;2;250;189;47", "red": "38;2;251;73;52" },
+    "bar": { "border": { "left": "[", "right": "]" }, "char": { "elapsed": "#", "total": "-" }, "width": 12 }
+  },
+
+  "modules": [
+    { "type": "title", "format": "{user-name}@{host-name}", "color": { "user": "#fe8019", "host": "#fe8019" } },
+    { "type": "custom", "format": "--------------------------", "outputColor": "38;2;102;92;84" },
+
+    { "type": "os",       "key": "os    " },
+    { "type": "kernel",   "key": "kernel" },
+    { "type": "uptime",   "key": "uptime", "format": "{days}d {hours}h {minutes}m" },
+    { "type": "packages", "key": "pkgs  " },
+    { "type": "shell",    "key": "shell " },
+
+    { "type": "break" },
+
+    { "type": "cpu",      "key": "cpu   " },
+    { "type": "loadavg",  "key": "load  " },
+    { "type": "memory",   "key": "mem   " },
+    { "type": "swap",     "key": "swap  " },
+    { "type": "disk",     "key": "disk  ", "folders": "/", "format": "{size-used} / {size-total}" },
+
+    { "type": "break" },
+
+    { "type": "localip",   "key": "ip    ", "defaultRouteOnly": true, "format": "{ifname} {ipv4}" },
+    { "type": "users",     "key": "users ", "format": "{name}" },
+    { "type": "processes", "key": "procs " },
+    { "type": "datetime",  "key": "time  ", "format": "{year}-{month-pretty}-{day-pretty} {hour-pretty}:{minute-pretty}" }
+  ]
+}
